@@ -1,111 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Chòm sao</title>
-</head>
-<body>
-    <form action="bai3.php" method="post">
-        <input type="text" name="day" placeholder="Ngày sinh">
-        <input type="text" name="month" placeholder="Tháng sinh">
-        <input type="submit" value="Xem chòm sao">
-    </form>
-    <?php
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $day = $_POST["day"];
-            $month = $_POST["month"];
+<?php
+$day = 15; // Ngày sinh
+$month = 8; // Tháng sinh
 
-            $constellation = "";
-
-            switch ($month) {
-                case 1:
-                    if ($day >= 20) {
-                        $constellation = "Bảo Bình";
-                    } else {
-                        $constellation = "Ma Kết";
-                    }
-                    break;
-                case 2:
-                    if ($day >= 19) {
-                        $constellation = "Song Ngư";
-                    } else {
-                        $constellation = "Bảo Bình";
-                    }
-                    break;
-                case 3:
-                    if ($day >= 21) {
-                        $constellation = "Bạch Dương";
-                    } else {
-                        $constellation = "Song Ngư";
-                    }
-                    break;
-                case 4:
-                    if ($day >= 20) {
-                        $constellation = "Kim Ngưu";
-                    } else {
-                        $constellation = "Bạch Dương";
-                    }
-                    break;
-                case 5:
-                    if ($day >= 21) {
-                        $constellation = "Song Tử";
-                    } else {
-                        $constellation = "Kim Ngưu";
-                    }
-                    break;
-                case 6:
-                    if ($day >= 22) {
-                        $constellation = "Cự Giải";
-                    } else {
-                        $constellation = "Song Tử";
-                    }
-                    break;
-                case 7:
-                    if ($day >= 23) {
-                        $constellation = "Sư Tử";
-                    } else {
-                        $constellation = "Cự Giải";
-                    }
-                    break;
-                case 8:
-                    if ($day >= 23) {
-                        $constellation = "Xử Nữ";
-                    } else {
-                        $constellation = "Sư Tử";
-                    }
-                    break;
-                case 9:
-                    if ($day >= 23) {
-                        $constellation = "Thiên Bình";
-                    } else {
-                        $constellation = "Xử Nữ";
-                    }
-                    break;
-                case 10:
-                    if ($day >= 23) {
-                        $constellation = "Bọ Cạp";
-                    } else {
-                        $constellation = "Thiên Bình";
-                    }
-                    break;
-                case 11:
-                    if ($day >= 22) {
-                        $constellation = "Nhân Mã";
-                    } else {
-                        $constellation = "Bọ Cạp";
-                    }
-                    break;
-                case 12:
-                    if ($day >= 22) {
-                        $constellation = "Ma Kết";
-                    } else {
-                        $constellation = "Nhân Mã";
-                    }
-                    break;
-            }
-
-            echo "<p>Chòm sao của bạn là: $constellation</p>";
-        }
-    ?>
-</body>
-</html>
+if (($month == 3 && $day >= 21) || ($month == 4 && $day <= 19)) {
+    echo "Bạn thuộc chòm sao Bạch Dương";
+} elseif (($month == 4 && $day >= 20) || ($month == 5 && $day <= 20)) {
+    echo "Bạn thuộc chòm sao Kim Ngưu";
+} elseif (($month == 5 && $day >= 21) || ($month == 6 && $day <= 21)) {
+    echo "Bạn thuộc chòm sao Song Tử";
+} elseif (($month == 6 && $day >= 22) || ($month == 7 && $day <= 22)) {
+    echo "Bạn thuộc chòm sao Cự Giải";
+} elseif (($month == 7 && $day >= 23) || ($month == 8 && $day <= 22)) {
+    echo "Bạn thuộc chòm sao Sư Tử";
+} elseif (($month == 8 && $day >= 23) || ($month == 9 && $day <= 22)) {
+    echo "Bạn thuộc chòm sao Xử Nữ";
+} elseif (($month == 9 && $day >= 23) || ($month == 10 && $day <= 23)) {
+    echo "Bạn thuộc chòm sao Thiên Bình";
+} elseif (($month == 10 && $day >= 24) || ($month == 11 && $day <= 21)) {
+    echo "Bạn thuộc chòm sao Bọ Cạp";
+} elseif (($month == 11 && $day >= 22) || ($month == 12 && $day <= 21)) {
+    echo "Bạn thuộc chòm sao Nhân Mã";
+} elseif (($month == 12 && $day >= 22) || ($month == 1 && $day <= 19)) {
+    echo "Bạn thuộc chòm sao Ma Kết";
+} elseif (($month == 1 && $day >= 20) || ($month == 2 && $day <=18)) {
+    echo "Bạn thuộc chòm sao Bảo Bình";
+} else {
+    echo "Bạn thuộc chòm sao Song Ngư";
+}
+?>

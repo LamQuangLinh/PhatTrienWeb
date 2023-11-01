@@ -1,48 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Máy tính cầm tay</title>
-</head>
-<body>
-    <form action="bai2.php" method="post">
-        <input type="text" name="a" placeholder="Số thứ nhất">
-        <select name="cal">
-            <option value="+">+</option>
-            <option value="-">-</option>
-            <option value="*">*</option>
-            <option value="/">/</option>
-            <option value="%">%</option>
-        </select>
-        <input type="text" name="b" placeholder="Số thứ hai">
-        <input type="submit" value="=">
-    </form>
-    <?php
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $a = $_POST["a"];
-            $b = $_POST["b"];
-            $cal = $_POST["cal"];
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $num1 = $_POST['num1'];
+    $num2 = $_POST['num2'];
+    $operator = $_POST['operator'];
 
-            switch ($cal) {
-                case "+":
-                    $result = $a + $b;
-                    break;
-                case "-":
-                    $result = $a - $b;
-                    break;
-                case "*":
-                    $result = $a * $b;
-                    break;
-                case "/":
-                    $result = $a / $b;
-                    break;
-                case "%":
-                    $result = $a % $b;
-                    break;
+    switch ($operator) {
+        case '+':
+            $result = $num1 + $num2;
+            break;
+        case '-':
+            $result = $num1 - $num2;
+            break;
+        case '*':
+            $result = $num1 * $num2;
+            break;
+        case '/':
+            if ($num2 == 0) {
+                echo 'Không thể chia cho 0!';
+                exit();
             }
+            $result = $num1 / $num2;
+            break;
+        default:
+            echo 'Phép tính không hợp lệ!';
+            exit();
+    }
 
-            echo "<p>Kết quả: $result</p>";
-        }
-    ?>
-</body>
-</html>
+    echo "Kết quả: $result";
+}
+?>
+
+<form method="post">
+    <input type="number" name="num1" required>
+    <select name="operator" required>
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+    </select>
+    <input type="number" name="num2" required>
+    <input type="submit" value="Tính">
+</form>
