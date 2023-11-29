@@ -1,40 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Select box động</title>
-</head>
-<body>
-
-<h1>Select box động</h1>
-
-<form action="bai5.php" method="post">
-    <select name="user">
-        <?php foreach ($data as $item) { ?>
-            <option value="<?php echo $item["id"]; ?>"><?php echo $item["name"]; ?></option>
-        <?php } ?>
-    </select>
-    <input type="submit" value="Chọn">
-</form>
 
 <?php
+// Mảng chứa dữ liệu cho select box
+$options = array(
+    'Option 1',
+    'Option 2',
+    'Option 3',
+    'Option 4'
+);
 
-$data = [
-    ["id" => 1, "name" => "John Doe"],
-    ["id" => 2, "name" => "Jane Doe"],
-    ["id" => 3, "name" => "John Smith"],
-    ["id" => 4, "name" => "Jane Smith"],
-];
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $user_id = $_POST["user"];
-
-    if ($user_id != "") {
-        echo "Bạn đã chọn: $user_id";
-    }
+// Xử lý khi form được gửi đi
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $selectedOption = $_POST['selectOption'];
+    echo 'Option được chọn: ' . $selectedOption;
 }
-
 ?>
 
-</body>
-</html>
+<form method="post">
+    <label for="selectOption">Chọn một option:</label><br>
+    <select name="selectOption" id="selectOption">
+        <?php foreach ($options as $option) : ?>
+        <option value="<?php echo $option; ?>"><?php echo $option; ?></option>
+        <?php endforeach; ?>
+    </select><br>
+    <input type="submit" value="Submit">
+</form>
+
